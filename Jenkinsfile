@@ -58,7 +58,7 @@ pipeline{
 		   steps {
     			ansiblePlaybook( 
         			playbook: ansible_playbook.yml,
-        			inventory: /etc/ansible/hosts, 
+        			inventory: /etc/ansible/hosts
        				) 
 			}
 	   } 
