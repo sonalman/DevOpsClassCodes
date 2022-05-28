@@ -1,0 +1,809 @@
+Started by user admin
+Obtained Jenkinsfile from git https://github.com/sonalman/DevOpsClassCodes
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/project1Pipeline
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/sonalman/DevOpsClassCodes # timeout=10
+Fetching upstream changes from https://github.com/sonalman/DevOpsClassCodes
+ > git --version # timeout=10
+ > git --version # 'git version 2.17.1'
+ > git fetch --tags --progress -- https://github.com/sonalman/DevOpsClassCodes +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 73824a433520c578eacbce8ddaad4e33ac1a075c (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 73824a433520c578eacbce8ddaad4e33ac1a075c # timeout=10
+Commit message: "Update Dockerfile"
+ > git rev-list --no-walk add0ff866380f7408c772c15a74319728084a04f # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Tool Install)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+cloning..
+[Pipeline] git
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/sonalman/DevOpsClassCodes.git # timeout=10
+Fetching upstream changes from https://github.com/sonalman/DevOpsClassCodes.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.17.1'
+ > git fetch --tags --progress -- https://github.com/sonalman/DevOpsClassCodes.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 73824a433520c578eacbce8ddaad4e33ac1a075c (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 73824a433520c578eacbce8ddaad4e33ac1a075c # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D master # timeout=10
+ > git checkout -b master 73824a433520c578eacbce8ddaad4e33ac1a075c # timeout=10
+Commit message: "Update Dockerfile"
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Compile)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+compiling..
+[Pipeline] sh
++ mvn compile
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.edurekademo.tutorial:addressbook:war:2.0
+[WARNING] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter. @ line 298, column 40
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] 
+[INFO] ----------------< com.edurekademo.tutorial:addressbook >----------------
+[INFO] Building Vaadin Addressbook example 2.0
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.0:enforce (enforce-versions) @ addressbook ---
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ addressbook ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/project1Pipeline/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.2:compile (default-compile) @ addressbook ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.758 s
+[INFO] Finished at: 2022-05-28T05:30:36Z
+[INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (CodeReview)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+codeReview
+[Pipeline] sh
++ mvn pmd:pmd
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.edurekademo.tutorial:addressbook:war:2.0
+[WARNING] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter. @ line 298, column 40
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] 
+[INFO] ----------------< com.edurekademo.tutorial:addressbook >----------------
+[INFO] Building Vaadin Addressbook example 2.0
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- maven-pmd-plugin:3.16.0:pmd (default-cli) @ addressbook ---
+[WARNING] Unable to locate Source XRef to link to - DISABLED
+[INFO] PMD version: 6.42.0
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  7.598 s
+[INFO] Finished at: 2022-05-28T05:30:46Z
+[INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (UnitTest)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+Testing
+[Pipeline] sh
++ mvn test
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.edurekademo.tutorial:addressbook:war:2.0
+[WARNING] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter. @ line 298, column 40
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] 
+[INFO] ----------------< com.edurekademo.tutorial:addressbook >----------------
+[INFO] Building Vaadin Addressbook example 2.0
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.0:enforce (enforce-versions) @ addressbook ---
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ addressbook ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/project1Pipeline/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.2:compile (default-compile) @ addressbook ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ addressbook ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.2:testCompile (default-testCompile) @ addressbook ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.19.1:test (default-test) @ addressbook ---
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.edurekademo.utilities.TestLogger
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/var/lib/jenkins/.m2/repository/org/slf4j/slf4j-simple/1.7.7/slf4j-simple-1.7.7.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/var/lib/jenkins/.m2/repository/org/slf4j/slf4j-log4j12/1.7.7/slf4j-log4j12-1.7.7.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.SimpleLoggerFactory]
+[pool-1-thread-1] ERROR com.edurekademo.utilities.ExceptionThrower - java.lang.Exception: DEAR
+Cause:at com.edurekademo.utilities.ExceptionThrower.doYYY(ExceptionThrower.java:35)
+Cause:at com.edurekademo.utilities.ExceptionThrower.doXXX(ExceptionThrower.java:23)
+[pool-1-thread-1] INFO com.edurekademo.utilities.TestLogger - java.lang.Exception: TEST MESSAGE
+Cause:at com.edurekademo.utilities.ExceptionThrower.doCheck(ExceptionThrower.java:43)
+Cause:at com.edurekademo.utilities.TestLogger.testGetErrorMessage5(TestLogger.java:75)
+***** java.lang.Exception: TEST MESSAGE
+Cause:at com.edurekademo.utilities.ExceptionThrower.doCheck(ExceptionThrower.java:43)
+Cause:at com.edurekademo.utilities.TestLogger.testGetErrorMessage5(TestLogger.java:75)
+[pool-1-thread-2] INFO com.edurekademo.utilities.TestLogger - java.io.IOException: TESTIOEXCEPTION
+Cause:at com.edurekademo.utilities.ExceptionThrower.doNothing(ExceptionThrower.java:18)
+Cause:at com.edurekademo.utilities.TestLogger.testGetErrorMessage4(TestLogger.java:60)
+[pool-1-thread-3] INFO com.edurekademo.utilities.TestLogger - java.lang.ArithmeticException: / by zero
+Cause:at com.edurekademo.utilities.TestLogger.testGetErrorMessage1(TestLogger.java:14)
+Cause:at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[pool-1-thread-5] INFO com.edurekademo.utilities.TestLogger - java.lang.ArithmeticException: / by zero
+Cause:at com.edurekademo.utilities.TestLogger.testGetErrorMessage2(TestLogger.java:30)
+Cause:at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[pool-1-thread-4] INFO com.edurekademo.utilities.TestLogger - java.lang.ArithmeticException: / by zero
+Cause:at com.edurekademo.utilities.ExceptionThrower.getCounter(ExceptionThrower.java:13)
+Cause:at com.edurekademo.utilities.TestLogger.testGetErrorMessage3(TestLogger.java:45)
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.057 sec - in com.edurekademo.utilities.TestLogger
+Running com.edurekademo.utilities.TestHexAsciiConversion
+testing ascii convertion into hexadecimal
+74657374696e6720617363696920636f6e76657274696f6e20696e746f2068657861646563696d616c
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.038 sec - in com.edurekademo.utilities.TestHexAsciiConversion
+Running com.edurekademo.utilities.TestGenericComparator
+Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.045 sec - in com.edurekademo.utilities.TestGenericComparator
+
+Results :
+
+Tests run: 23, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.456 s
+[INFO] Finished at: 2022-05-28T05:30:55Z
+[INFO] ------------------------------------------------------------------------
+Post stage
+[Pipeline] junit
+Recording test results
+[Checks API] No suitable checks publisher found.
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (MetricCheck)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ mvn cobertura:cobertura -Dcobertura.report.format=xml
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.edurekademo.tutorial:addressbook:war:2.0
+[WARNING] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter. @ line 298, column 40
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] 
+[INFO] ----------------< com.edurekademo.tutorial:addressbook >----------------
+[INFO] Building Vaadin Addressbook example 2.0
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] >>> cobertura-maven-plugin:2.7:cobertura (default-cli) > [cobertura]test @ addressbook >>>
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.0:enforce (enforce-versions) @ addressbook ---
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ addressbook ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/project1Pipeline/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.2:compile (default-compile) @ addressbook ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- cobertura-maven-plugin:2.7:instrument (default-cli) @ addressbook ---
+[INFO] Cobertura 2.1.1 - GNU GPL License (NO WARRANTY) - See COPYRIGHT file
+[INFO] Cobertura: Loaded information on 17 classes.
+[INFO] Cobertura: Saved information on 17 classes.
+[INFO] Cobertura: Saved information on 17 classes.
+
+[ERROR] SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/var/lib/jenkins/.m2/repository/ch/qos/logback/logback-classic/1.0.13/logback-classic-1.0.13.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/var/lib/jenkins/.m2/repository/org/slf4j/slf4j-simple/1.7.7/slf4j-simple-1.7.7.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/var/lib/jenkins/.m2/repository/org/slf4j/slf4j-log4j12/1.7.7/slf4j-log4j12-1.7.7.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [ch.qos.logback.classic.util.ContextSelectorStaticBinder]
+
+[INFO] Instrumentation was successful.
+[INFO] NOT adding cobertura ser file to attached artifacts list.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ addressbook ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.2:testCompile (default-testCompile) @ addressbook ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.19.1:test (default-test) @ addressbook ---
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+
+Running com.edurekademo.utilities.TestLogger
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/var/lib/jenkins/.m2/repository/org/slf4j/slf4j-simple/1.7.7/slf4j-simple-1.7.7.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/var/lib/jenkins/.m2/repository/org/slf4j/slf4j-log4j12/1.7.7/slf4j-log4j12-1.7.7.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/var/lib/jenkins/.m2/repository/ch/qos/logback/logback-classic/1.0.13/logback-classic-1.0.13.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.SimpleLoggerFactory]
+[pool-1-thread-1] INFO com.edurekademo.utilities.TestLogger - java.io.IOException: TESTIOEXCEPTION
+Cause:at com.edurekademo.utilities.ExceptionThrower.doNothing(ExceptionThrower.java:18)
+Cause:at com.edurekademo.utilities.TestLogger.testGetErrorMessage4(TestLogger.java:60)
+[pool-1-thread-2] INFO com.edurekademo.utilities.TestLogger - java.lang.ArithmeticException: / by zero
+Cause:at com.edurekademo.utilities.TestLogger.testGetErrorMessage2(TestLogger.java:30)
+Cause:at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[pool-1-thread-3] ERROR com.edurekademo.utilities.ExceptionThrower - java.lang.Exception: DEAR
+Cause:at com.edurekademo.utilities.ExceptionThrower.doYYY(ExceptionThrower.java:35)
+Cause:at com.edurekademo.utilities.ExceptionThrower.doXXX(ExceptionThrower.java:23)
+[pool-1-thread-3] INFO com.edurekademo.utilities.TestLogger - java.lang.Exception: TEST MESSAGE
+Cause:at com.edurekademo.utilities.ExceptionThrower.doCheck(ExceptionThrower.java:43)
+Cause:at com.edurekademo.utilities.TestLogger.testGetErrorMessage5(TestLogger.java:75)
+***** java.lang.Exception: TEST MESSAGE
+Cause:at com.edurekademo.utilities.ExceptionThrower.doCheck(ExceptionThrower.java:43)
+Cause:at com.edurekademo.utilities.TestLogger.testGetErrorMessage5(TestLogger.java:75)
+[pool-1-thread-4] INFO com.edurekademo.utilities.TestLogger - java.lang.ArithmeticException: / by zero
+Cause:at com.edurekademo.utilities.ExceptionThrower.getCounter(ExceptionThrower.java:13)
+Cause:at com.edurekademo.utilities.TestLogger.testGetErrorMessage3(TestLogger.java:45)
+[pool-1-thread-5] INFO com.edurekademo.utilities.TestLogger - java.lang.ArithmeticException: / by zero
+Cause:at com.edurekademo.utilities.TestLogger.testGetErrorMessage1(TestLogger.java:14)
+Cause:at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.092 sec - in com.edurekademo.utilities.TestLogger
+Running com.edurekademo.utilities.TestHexAsciiConversion
+74657374696e6720617363696920636f6e76657274696f6e20696e746f2068657861646563696d616c
+testing ascii convertion into hexadecimal
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.026 sec - in com.edurekademo.utilities.TestHexAsciiConversion
+Running com.edurekademo.utilities.TestGenericComparator
+Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.075 sec - in com.edurekademo.utilities.TestGenericComparator
+
+Results :
+
+Tests run: 23, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] <<< cobertura-maven-plugin:2.7:cobertura (default-cli) < [cobertura]test @ addressbook <<<
+[INFO] 
+[INFO] 
+[INFO] --- cobertura-maven-plugin:2.7:cobertura (default-cli) @ addressbook ---
+
+[INFO] Cobertura 2.1.1 - GNU GPL License (NO WARRANTY) - See COPYRIGHT file
+[INFO] Cobertura: Loaded information on 17 classes.
+[WARN] JavaNCSS got an error while parsing the java file /var/lib/jenkins/workspace/project1Pipeline/src/main/java/com/edurekademo/tutorial/addressbook/AddressbookUI.java
+ParseException in STDIN
+Last useful checkpoint: "com.edurekademo.tutorial.addressbook.AddressbookUI.configureComponents()"
+Encountered " ">" "> "" at line 72, column 40.
+Was expecting one of:
+    "assert" ...
+    "boolean" ...
+    "byte" ...
+    "char" ...
+    "double" ...
+    "enum" ...
+    "false" ...
+    "float" ...
+    "int" ...
+    "long" ...
+    "new" ...
+    "null" ...
+    "short" ...
+    "super" ...
+    "this" ...
+    "true" ...
+    "void" ...
+    <INTEGER_LITERAL> ...
+    <FLOATING_POINT_LITERAL> ...
+    <CHARACTER_LITERAL> ...
+    <STRING_LITERAL> ...
+    <IDENTIFIER> ...
+    "(" ...
+    "!" ...
+    "~" ...
+    "++" ...
+    "--" ...
+    "+" ...
+    "-" ...
+    
+
+[WARN] JavaNCSS got an error while parsing the java file /var/lib/jenkins/workspace/project1Pipeline/src/main/java/com/edurekademo/tutorial/addressbook/ContactForm.java
+ParseException in STDIN
+Last useful checkpoint: "com.edurekademo.tutorial.addressbook.ContactForm"
+Encountered " ":" ": "" at line 26, column 42.
+Was expecting one of:
+    "assert" ...
+    "instanceof" ...
+    "new" ...
+    <IDENTIFIER> ...
+    ")" ...
+    "," ...
+    "." ...
+    "=" ...
+    ">" ...
+    "<" ...
+    "?" ...
+    "==" ...
+    "<=" ...
+    ">=" ...
+    "!=" ...
+    "||" ...
+    "&&" ...
+    "++" ...
+    "--" ...
+    "+" ...
+    "-" ...
+    "*" ...
+    "/" ...
+    "&" ...
+    "|" ...
+    "^" ...
+    "%" ...
+    "+=" ...
+    "-=" ...
+    "*=" ...
+    "/=" ...
+    "&=" ...
+    "|=" ...
+    "^=" ...
+    "%=" ...
+    "<<=" ...
+    ">>=" ...
+    ">>>=" ...
+    ">" ...
+    "." ...
+    "." ...
+    "." ...
+    "." ...
+    
+
+Report time: 564ms
+
+[ERROR] net.sourceforge.cobertura.javancss.parser.ParseException: Encountered " ">" "> "" at line 72, column 40.
+Was expecting one of:
+    "assert" ...
+    "boolean" ...
+    "byte" ...
+    "char" ...
+    "double" ...
+    "enum" ...
+    "false" ...
+    "float" ...
+    "int" ...
+    "long" ...
+    "new" ...
+    "null" ...
+    "short" ...
+    "super" ...
+    "this" ...
+    "true" ...
+    "void" ...
+    <INTEGER_LITERAL> ...
+    <FLOATING_POINT_LITERAL> ...
+    <CHARACTER_LITERAL> ...
+    <STRING_LITERAL> ...
+    <IDENTIFIER> ...
+    "(" ...
+    "!" ...
+    "~" ...
+    "++" ...
+    "--" ...
+    "+" ...
+    "-" ...
+    
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.generateParseException(JavaParser.java:10490)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.jj_consume_token(JavaParser.java:10366)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.UnaryExpression(JavaParser.java:3175)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.MultiplicativeExpression(JavaParser.java:3090)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.AdditiveExpression(JavaParser.java:3085)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.ShiftExpression(JavaParser.java:3027)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.RelationalExpression(JavaParser.java:2990)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.InstanceOfExpression(JavaParser.java:2977)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.AssigmentExpression(JavaParser.java:2959)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.EqualityExpression(JavaParser.java:2886)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.AndExpression(JavaParser.java:2860)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.ExclusiveOrExpression(JavaParser.java:2843)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.InclusiveOrExpression(JavaParser.java:2826)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.ConditionalAndExpression(JavaParser.java:2808)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.ConditionalOrExpression(JavaParser.java:2790)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.ConditionalExpression(JavaParser.java:2774)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.Expression(JavaParser.java:2718)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.ArgumentList(JavaParser.java:3620)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.Arguments(JavaParser.java:3610)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.PrimarySuffix(JavaParser.java:3511)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.PrimaryExpression(JavaParser.java:3384)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.StatementExpression(JavaParser.java:4070)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.Statement(JavaParser.java:3795)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.BlockStatement(JavaParser.java:3984)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.Block(JavaParser.java:3934)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.MethodDeclaration(JavaParser.java:1987)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.ClassBodyDeclaration(JavaParser.java:1039)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.ClassBody(JavaParser.java:898)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.UnmodifiedClassDeclaration(JavaParser.java:824)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.ClassDeclaration(JavaParser.java:728)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.TypeDeclaration(JavaParser.java:575)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.CompilationUnit(JavaParser.java:318)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.parse(JavaParser.java:100)
+	at net.sourceforge.cobertura.javancss.Javancss._measureSource(Javancss.java:192)
+	at net.sourceforge.cobertura.javancss.Javancss._measureRoot(Javancss.java:268)
+	at net.sourceforge.cobertura.javancss.Javancss.<init>(Javancss.java:347)
+	at net.sourceforge.cobertura.javancss.JavancssFactory.newInstance(JavancssFactory.java:40)
+	at net.sourceforge.cobertura.reporting.ComplexityCalculator.getFunctionMetricsForSingleFile(ComplexityCalculator.java:243)
+	at net.sourceforge.cobertura.reporting.ComplexityCalculator.getAccumlatedCCNForSingleFile(ComplexityCalculator.java:143)
+	at net.sourceforge.cobertura.reporting.ComplexityCalculator.getCCNForSourceFileNameInternal(ComplexityCalculator.java:273)
+	at net.sourceforge.cobertura.reporting.ComplexityCalculator.getCCNForPackageInternal(ComplexityCalculator.java:208)
+	at net.sourceforge.cobertura.reporting.ComplexityCalculator.getCCNForProject(ComplexityCalculator.java:174)
+	at net.sourceforge.cobertura.reporting.xml.XMLReport.<init>(XMLReport.java:70)
+	at net.sourceforge.cobertura.reporting.xml.XMLReportFormatStrategy.save(XMLReportFormatStrategy.java:18)
+	at net.sourceforge.cobertura.reporting.NativeReport.export(NativeReport.java:31)
+	at net.sourceforge.cobertura.reporting.CompositeReport.export(CompositeReport.java:19)
+	at net.sourceforge.cobertura.reporting.ReportMain.parseArgumentsAndReport(ReportMain.java:91)
+	at net.sourceforge.cobertura.reporting.ReportMain.generateReport(ReportMain.java:141)
+	at net.sourceforge.cobertura.reporting.ReportMain.main(ReportMain.java:151)
+net.sourceforge.cobertura.javancss.parser.ParseException: Encountered " ":" ": "" at line 26, column 42.
+Was expecting one of:
+    "assert" ...
+    "instanceof" ...
+    "new" ...
+    <IDENTIFIER> ...
+    ")" ...
+    "," ...
+    "." ...
+    "=" ...
+    ">" ...
+    "<" ...
+    "?" ...
+    "==" ...
+    "<=" ...
+    ">=" ...
+    "!=" ...
+    "||" ...
+    "&&" ...
+    "++" ...
+    "--" ...
+    "+" ...
+    "-" ...
+    "*" ...
+    "/" ...
+    "&" ...
+    "|" ...
+    "^" ...
+    "%" ...
+    "+=" ...
+    "-=" ...
+    "*=" ...
+    "/=" ...
+    "&=" ...
+    "|=" ...
+    "^=" ...
+    "%=" ...
+    "<<=" ...
+    ">>=" ...
+    ">>>=" ...
+    ">" ...
+    "." ...
+    "." ...
+    "." ...
+    "." ...
+    
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.generateParseException(JavaParser.java:10490)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.jj_consume_token(JavaParser.java:10366)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.Arguments(JavaParser.java:3616)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.AllocationExpression(JavaParser.java:3665)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.PrimaryPrefix(JavaParser.java:3456)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.PrimaryExpression(JavaParser.java:3376)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.PostfixExpression(JavaParser.java:3330)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.UnaryExpressionNotPlusMinus(JavaParser.java:3237)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.UnaryExpression(JavaParser.java:3171)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.MultiplicativeExpression(JavaParser.java:3090)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.AdditiveExpression(JavaParser.java:3061)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.ShiftExpression(JavaParser.java:3027)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.RelationalExpression(JavaParser.java:2990)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.InstanceOfExpression(JavaParser.java:2977)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.AssigmentExpression(JavaParser.java:2959)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.EqualityExpression(JavaParser.java:2886)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.AndExpression(JavaParser.java:2860)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.ExclusiveOrExpression(JavaParser.java:2843)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.InclusiveOrExpression(JavaParser.java:2826)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.ConditionalAndExpression(JavaParser.java:2808)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.ConditionalOrExpression(JavaParser.java:2790)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.ConditionalExpression(JavaParser.java:2774)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.Expression(JavaParser.java:2718)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.VariableInitializer(JavaParser.java:1744)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.VariableDeclarator(JavaParser.java:1672)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.FieldDeclaration(JavaParser.java:1649)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.ClassBodyDeclaration(JavaParser.java:1071)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.ClassBody(JavaParser.java:898)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.UnmodifiedClassDeclaration(JavaParser.java:824)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.ClassDeclaration(JavaParser.java:728)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.TypeDeclaration(JavaParser.java:575)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.CompilationUnit(JavaParser.java:318)
+	at net.sourceforge.cobertura.javancss.parser.JavaParser.parse(JavaParser.java:100)
+	at net.sourceforge.cobertura.javancss.Javancss._measureSource(Javancss.java:192)
+	at net.sourceforge.cobertura.javancss.Javancss._measureRoot(Javancss.java:268)
+	at net.sourceforge.cobertura.javancss.Javancss.<init>(Javancss.java:347)
+	at net.sourceforge.cobertura.javancss.JavancssFactory.newInstance(JavancssFactory.java:40)
+	at net.sourceforge.cobertura.reporting.ComplexityCalculator.getFunctionMetricsForSingleFile(ComplexityCalculator.java:243)
+	at net.sourceforge.cobertura.reporting.ComplexityCalculator.getAccumlatedCCNForSingleFile(ComplexityCalculator.java:143)
+	at net.sourceforge.cobertura.reporting.ComplexityCalculator.getCCNForSourceFileNameInternal(ComplexityCalculator.java:273)
+	at net.sourceforge.cobertura.reporting.ComplexityCalculator.getCCNForPackageInternal(ComplexityCalculator.java:208)
+	at net.sourceforge.cobertura.reporting.ComplexityCalculator.getCCNForProject(ComplexityCalculator.java:174)
+	at net.sourceforge.cobertura.reporting.xml.XMLReport.<init>(XMLReport.java:70)
+	at net.sourceforge.cobertura.reporting.xml.XMLReportFormatStrategy.save(XMLReportFormatStrategy.java:18)
+	at net.sourceforge.cobertura.reporting.NativeReport.export(NativeReport.java:31)
+	at net.sourceforge.cobertura.reporting.CompositeReport.export(CompositeReport.java:19)
+	at net.sourceforge.cobertura.reporting.ReportMain.parseArgumentsAndReport(ReportMain.java:91)
+	at net.sourceforge.cobertura.reporting.ReportMain.generateReport(ReportMain.java:141)
+	at net.sourceforge.cobertura.reporting.ReportMain.main(ReportMain.java:151)
+
+[INFO] Cobertura Report generation was successful.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  8.468 s
+[INFO] Finished at: 2022-05-28T05:31:05Z
+[INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Package)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
+
++ mvn package
+
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.edurekademo.tutorial:addressbook:war:2.0
+[WARNING] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter. @ line 298, column 40
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] 
+[INFO] ----------------< com.edurekademo.tutorial:addressbook >----------------
+[INFO] Building Vaadin Addressbook example 2.0
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.0:enforce (enforce-versions) @ addressbook ---
+
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ addressbook ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/project1Pipeline/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.2:compile (default-compile) @ addressbook ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ addressbook ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.2:testCompile (default-testCompile) @ addressbook ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.19.1:test (default-test) @ addressbook ---
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.edurekademo.utilities.TestLogger
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/var/lib/jenkins/.m2/repository/org/slf4j/slf4j-simple/1.7.7/slf4j-simple-1.7.7.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/var/lib/jenkins/.m2/repository/org/slf4j/slf4j-log4j12/1.7.7/slf4j-log4j12-1.7.7.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.SimpleLoggerFactory]
+[pool-1-thread-1] INFO com.edurekademo.utilities.TestLogger - java.lang.ArithmeticException: / by zero
+Cause:at com.edurekademo.utilities.TestLogger.testGetErrorMessage2(TestLogger.java:30)
+Cause:at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[pool-1-thread-2] ERROR com.edurekademo.utilities.ExceptionThrower - java.lang.Exception: DEAR
+Cause:at com.edurekademo.utilities.ExceptionThrower.doYYY(ExceptionThrower.java:35)
+Cause:at com.edurekademo.utilities.ExceptionThrower.doXXX(ExceptionThrower.java:23)
+[pool-1-thread-2] INFO com.edurekademo.utilities.TestLogger - java.lang.Exception: TEST MESSAGE
+Cause:at com.edurekademo.utilities.ExceptionThrower.doCheck(ExceptionThrower.java:43)
+Cause:at com.edurekademo.utilities.TestLogger.testGetErrorMessage5(TestLogger.java:75)
+***** java.lang.Exception: TEST MESSAGE
+Cause:at com.edurekademo.utilities.ExceptionThrower.doCheck(ExceptionThrower.java:43)
+Cause:at com.edurekademo.utilities.TestLogger.testGetErrorMessage5(TestLogger.java:75)
+[pool-1-thread-3] INFO com.edurekademo.utilities.TestLogger - java.io.IOException: TESTIOEXCEPTION
+Cause:at com.edurekademo.utilities.ExceptionThrower.doNothing(ExceptionThrower.java:18)
+Cause:at com.edurekademo.utilities.TestLogger.testGetErrorMessage4(TestLogger.java:60)
+[pool-1-thread-4] INFO com.edurekademo.utilities.TestLogger - java.lang.ArithmeticException: / by zero
+Cause:at com.edurekademo.utilities.ExceptionThrower.getCounter(ExceptionThrower.java:13)
+Cause:at com.edurekademo.utilities.TestLogger.testGetErrorMessage3(TestLogger.java:45)
+[pool-1-thread-5] INFO com.edurekademo.utilities.TestLogger - java.lang.ArithmeticException: / by zero
+Cause:at com.edurekademo.utilities.TestLogger.testGetErrorMessage1(TestLogger.java:14)
+Cause:at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.049 sec - in com.edurekademo.utilities.TestLogger
+Running com.edurekademo.utilities.TestHexAsciiConversion
+testing ascii convertion into hexadecimal
+74657374696e6720617363696920636f6e76657274696f6e20696e746f2068657861646563696d616c
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.038 sec - in com.edurekademo.utilities.TestHexAsciiConversion
+Running com.edurekademo.utilities.TestGenericComparator
+Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.041 sec - in com.edurekademo.utilities.TestGenericComparator
+
+Results :
+
+Tests run: 23, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-war-plugin:2.2:war (default-war) @ addressbook ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [addressbook] in [/var/lib/jenkins/workspace/project1Pipeline/target/addressbook]
+[INFO] Processing war project
+
+[INFO] Webapp assembled in [1026 msecs]
+[INFO] Building war: /var/lib/jenkins/workspace/project1Pipeline/target/addressbook.war
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.664 s
+[INFO] Finished at: 2022-05-28T05:31:13Z
+[INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Executing Ansible Playbook)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] ansiblePlaybook
+[project1Pipeline] $ ansible-playbook ansible_playbook.yml -i /etc/ansible/hosts
+
+PLAY [webserver] ***************************************************************
+
+TASK [Gathering Facts] *********************************************************
+
+[DEPRECATION WARNING]: Distribution Ubuntu 18.04 on host test_slave should use 
+/usr/bin/python3, but is using /usr/bin/python for backward compatibility with 
+prior Ansible releases. A future Ansible release will default to using the 
+discovered platform python for this host. See https://docs.ansible.com/ansible/
+2.9/reference_appendices/interpreter_discovery.html for more information. This 
+feature will be removed in version 2.12. Deprecation warnings can be disabled 
+by setting deprecation_warnings=False in ansible.cfg.
+ok: [test_slave]
+
+TASK [Start docker on webserver] ***********************************************
+
+ok: [test_slave]
+
+TASK [Copy application war file to test_host] **********************************
+
+changed: [test_slave]
+
+TASK [Copy Dockerfile to test_host] ********************************************
+
+ok: [test_slave]
+
+TASK [Build the image] *********************************************************
+
+changed: [test_slave]
+
+TASK [Run the image for deployment using war file] *****************************
+
+changed: [test_slave]
+
+PLAY RECAP *********************************************************************
+test_slave                 : ok=6    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
