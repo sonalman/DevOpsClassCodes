@@ -1,0 +1,12 @@
+- hosts: webserver
+  become: true
+  tasks:
+  - name: Start docker on webserver
+    service: name=docker state=started
+  - name: Copy application war file to test_host
+    COPY: src=/var/lib/jenkins/workspace/project1Pipeline/target/addressbook.war dest=/tmp/gitrepo/ mode: ugo=rwx
+  - name: Build the image
+    command: chdir=/tmp/gitrepo docker build -t sonalman88/myimage:1 .
+  - name: Run the image for deployment using war file
+    command: docker run -d -P sonalman88/myimage:1  
+ 
