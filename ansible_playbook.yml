@@ -4,7 +4,9 @@
   - name: Start docker on webserver
     service: name=docker state=started
   - name: Copy application war file to test_host
-    copy: src=/var/lib/jenkins/workspace/project1Pipeline/ dest=/tmp/gitrepo/ 
+    copy: src=/var/lib/jenkins/workspace/project1Pipeline/target/addressbook.war dest=/tmp/gitrepo/ 
+  - name: Copy Dockerfile to test_host
+    copy: src=/var/lib/jenkins/workspace/project1Pipeline/Dockerfile dest=/tmp/gitrepo/
   - name: Build the image
     command: chdir=/tmp/gitrepo docker build -t sonalman88/myimage:1 .
   - name: Run the image for deployment using war file
