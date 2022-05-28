@@ -54,7 +54,14 @@ pipeline{
                   sh 'mvn package'
               }
           }
-	     
+	   stage('Executing Ansible Playbook'){
+		   steps {
+    			ansiblePlaybook( 
+        			playbook: ansible_playbook.yml,
+        			inventory: /etc/ansible/hosts, 
+       				) 
+			}
+	   } 
           
       }
 }
