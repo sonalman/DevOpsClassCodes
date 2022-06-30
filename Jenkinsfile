@@ -4,10 +4,9 @@ pipeline{
         jdk 'myjava'
         maven 'mymaven'
     }
-	agent any
+      agent any
       stages{
-           stage('Checkout'){
-	    
+           stage('Checkout'){    
                steps{
 		 echo 'cloning..'
                  git 'https://github.com/sonalman/DevOpsClassCodes.git'
